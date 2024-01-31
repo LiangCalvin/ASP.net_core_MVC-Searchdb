@@ -1,0 +1,80 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.container-box {
+    width: 500px;
+    margin: 0 auto;
+    background-color: white ; /* Light gray background color */
+    margin-top: 20px;
+    border: 1px solid #ddd; /* Add border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Inside site.css or your custom CSS file */
+.check-detail-heading {
+    background-color: #1d40cb; /* Green background color */
+    padding: 10px; /* Add padding for better appearance */
+    text-align: center;
+    color: #fff; /* Text color */
+    font-weight: bold; /* Bold text */
+    font-size: 18px; /* Set the font size */
+    border-radius: 5px;
+}
+
+/* Inside wwwroot/css/site.css */
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1px; /* Add margin-top for separation from the top */
+}
+
+/* Center the form within the box */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+/* Adjust the width of the input fields */
+.form-group {
+    width: 400px; /* Set your desired width */
+    margin-bottom: 0px; /* Add margin for spacing */
+    margin-top: 10px;
+}
+
+/* Adjust the width of the button */
+.btn-small {
+    width: 100px; /* Set your desired width */
+    font-size: 14px; /* Set your desired font size */
+    margin-top: 40px;
+    margin-bottom: 10px;
+    background-color: #1d40cb; /* Change this to your desired color */
+    color: white; /* Change this to your desired text color */
+    border: 1px solid #000000; /* Border color */
+}

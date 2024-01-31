@@ -1,0 +1,53 @@
+﻿body {
+}
+
+/* wwwroot/css/customer-search-styles.css */
+.header {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.body {
+    margin-top: 20px;
+}
+
+/* Add margin-top to the search button */
+.btn-search {
+    margin-top: 10px;
+    background-color: #1d40cb;
+}
+
+
+.table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#generatePdf {
+    background-color: #1d40cb;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Add border-radius for rounded edges */
+}
+
+.custom-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse; /* Add this to collapse table borders */
+    border: 1px solid #ddd; /* Add a border to the table */
+}
+
+    .custom-table th,
+    .custom-table td {
+        border: 1px solid #ddd; /* Add borders to table cells */
+        padding: 8px; /* Add padding to table cells */
+        text-align: left; /* Align text to the left in table cells */
+    }
+
+    .custom-table th {
+        background-color: #17c4b5; /* Background color for table header */
+        color: #fff; /* Text color for table header */
+    }

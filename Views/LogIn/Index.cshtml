@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+
+<div class="container-box">
+    <div class="row justify-content-center">
+        
+        <div class="col-md-6-container">
+            <!-- Header Section -->
+            <div class="check-detail-heading">
+                <h2 style="font-size: 26px; font-weight: bold;">Check Computer Detail</h2>
+            </div>
+
+            <!-- Login Form Section -->
+            <div class="login-section">
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.ErrorMessage
+                    </div>
+                }
+
+                <form asp-action="Login" method="post" id="loginForm">
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div id="reminderMessage"></div> <!-- Container for the reminder message -->
+                    <button type="submit" onclick="validateAndSubmit()" class="btn btn-small">Login</button>
+                </form>
+
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function validateAndSubmit() {
+            var enteredUsername = document.getElementById('username').value;
+            var enteredPassword = document.getElementById('password').value;
+
+            // Perform basic validation
+            if (enteredUsername.trim() === '' || enteredPassword.trim() === '') {
+                document.getElementById('reminderMessage').innerHTML = '<span style="color: red;">Please enter both username and password.</span>';
+                return;
+            }
+
+            // Send an AJAX request to the server for authentication
+            $.ajax({
+                type: 'POST',
+                url: '/LogIn/AuthenticateUser', // Adjust the URL based on your controller action
+                data: { username: enteredUsername, password: enteredPassword },
+                success: function (result) {
+                    if (result.isValid) {
+                        // Valid user, submit the form
+                        document.getElementById('loginForm').submit();
+                    } else {
+                        // Invalid user, show an alert or update UI accordingly
+                        alert('Invalid username or password. Please check your credentials.');
+                    }
+                },
+                error: function () {
+                    // Handle the error case
+                    alert('An error occurred during user authentication.');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,186 @@
+﻿@model CheckComDetail.Controllers.SearchViewModel
+
+@{
+    ViewData["Title"] = "Customer Search";
+}
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add this line to include Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add these lines to include html2pdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Other head elements -->
+    <link rel="stylesheet" href="~/css/customer-search-styles.css" />
+
+</head>
+
+<body>
+    <!-- Header with Search Bar -->
+    <div class="header">
+        <h2>COMPUTER & SOFTWARE INFORMATION</h2>
+        <form asp-action="Search" method="post">
+            <div class="form-group">
+                <label for="searchTerm">Search Your Computer / Customer / Staff</label>
+                <input type="text" id="searchTerm" name="searchTerm" class="form-control" required value="@Model.SearchTerm">
+            </div>
+            <button type="submit" class="btn btn-primary btn-search">Search</button>
+        </form>
+    </div>
+
+    
+   
+    <!-- Display Results -->
+    <div class="body">
+        @if (Model != null)
+        {
+            <h2>Search Results</h2>
+
+            <!-- Display ComputerInfo results -->
+            @if (Model.ComputerInfoResults != null && Model.ComputerInfoResults.Any())
+            {
+                <h3>Computer Information</h3>
+                <table class="custom-table">
+                    <!-- Add table headers -->
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var computerInfo in Model.ComputerInfoResults)
+                        {
+                            <!-- Display ComputerInfo details -->
+                            <tr>
+                                <td>@computerInfo.ComputerModel</td>
+                                <td>@computerInfo.UserName</td>
+
+                                <!-- Add other ComputerInfo fields -->
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+            <!-- Repeat similar blocks for Customer, Product, and Staff results -->
+            
+            <!-- Display Customer results -->
+            @if (Model.CustomerResults != null && Model.CustomerResults.Any())
+            {
+                <h3>Customer Information</h3>
+                <table class="custom-table">
+                    <!-- Add table headers -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <!-- Add other headers based on Customer properties -->
+                            <th>Surname</th>
+                            <th>Smartphone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var customerInfo in Model.CustomerResults)
+                            {
+                            <!-- Display CustomerInfo details -->
+                            <tr>
+                                <td>@customerInfo.FirstName</td>
+                                <!-- Add other CustomerInfo fields -->
+                                <td>@customerInfo.LastName</td>
+                                <td>@customerInfo.Device</td>
+                                <td>@customerInfo.Email</td>
+                            </tr>
+                            }
+                    </tbody>
+                </table>
+            }
+            <!-- Display Product results -->
+            @if (Model.ProductResults != null && Model.ProductResults.Any())
+            {
+                <h3>Product Information</h3>
+                <table class="custom-table">
+                    <!-- Add table headers -->
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <!-- Add other headers based on Product properties -->
+                            <th>Model</th>
+                            <th>Price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var productInfo in Model.ProductResults)
+                        {
+                            <!-- Display ComputerInfo details -->
+                            <tr>
+                                <td>@productInfo.ProductBrand</td>
+                                <!-- Add other ComputerInfo fields -->
+                                <td>@productInfo.ProductModel</td>
+                                <td>@productInfo.ProductPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            <!-- Display Staff results -->
+            @if (Model.StaffResults != null && Model.StaffResults.Any())
+            {
+                <h3>Staff Information</h3>
+                <table class="custom-table">
+                    <!-- Add table headers -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <!-- Add other headers based on Staff properties -->
+                            <th>Surname</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @foreach (var staffInfo in Model.StaffResults)
+                        {
+                            <!-- Display ComputerInfo details -->
+                            <tr>
+                                <td>@staffInfo.FirstName</td>
+                                <!-- Add other ComputerInfo fields -->
+                                <td>@staffInfo.LastName</td>
+                                <td>@staffInfo.City</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+        else
+        {
+            <p>No results found with the specified criteria.</p>
+        }
+    </div>
+</body>
+</html>
+
+<script>
+    document.getElementById('generatePdf').addEventListener('click', function () {
+        // Define the HTML element to be converted to PDF
+        const element = document.body;
+
+        // Use html2pdf to generate the PDF
+        html2pdf(element, {
+            margin: 10,
+            filename: 'table.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        });
+    });
+</script>
+
+
+
+

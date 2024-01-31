@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+public class SearchViewModel
+{
+    public List<ComputerInfo>
+    ComputerInfoResults { get; set; }
+    public List<Customer>
+        CustomerResults { get; set; }
+        public List<Product>
+            ProductResults { get; set; }  // Add this property
+            public string SearchTerm { get; set; }
+            }
